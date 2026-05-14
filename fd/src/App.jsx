@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { LoadingScreen } from "./components/LoadingScreen.jsx";
-import { TopPoster } from "./components/TopPoster.jsx";
 import { Banner } from "./components/Banner.jsx";
 import { Hero } from "./components/Hero.jsx";
 import { Portfolio } from "./components/Portfolio.jsx";
 import { Contact } from "./components/Contact.jsx";
 import { PortraitTattoos } from "./components/PortraitTattoos.jsx";
 import { CoverupTattoos } from "./components/CoverupTattoos.jsx";
-import { TattooCost } from "./components/TattooCost.jsx";
 import { ShopEnvironment } from "./components/ShopEnvironment.jsx";
+import { Artist } from "./components/Artist.jsx";
 import { Navbar } from "./components/Navbar.jsx";
-import { AnimeCharacter } from "./components/AnimeCharacter.jsx";
-import { TattooCalculator } from "./components/TattooCalculator.jsx";
+import { SocialPopup } from "./components/SocialPopup.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [characterTrigger, setCharacterTrigger] = useState(0);
 
   useEffect(() => {
     // Show loading screen for 2 seconds
@@ -23,19 +20,8 @@ function App() {
       setLoading(false);
     }, 2000);
 
-    // Global click listener to trigger anime characters on button clicks
-    const handleClick = (e) => {
-      const isButton = e.target.closest('button');
-      if (isButton) {
-        setCharacterTrigger(prev => prev + 1);
-      }
-    };
-
-    window.addEventListener('click', handleClick);
-
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('click', handleClick);
     };
   }, []);
 
@@ -46,7 +32,6 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50 relative font-body animate-in fade-in duration-700">
       <Navbar />
-      <TopPoster />
       <Banner />
       <Hero />
       <div id="portfolio">
@@ -55,10 +40,9 @@ function App() {
       <PortraitTattoos />
       <CoverupTattoos />
       <ShopEnvironment />
-      <TattooCost />
+      <Artist />
       <Contact />
-      <TattooCalculator />
-      <AnimeCharacter trigger={characterTrigger} />
+      <SocialPopup />
     </div>
   );
 }
